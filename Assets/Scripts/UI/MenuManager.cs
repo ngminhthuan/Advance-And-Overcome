@@ -48,12 +48,11 @@ public class MenuManager : MonoBehaviour
 
     private void SaveAudioSettings()
     {
-        PlayerGameData.Instance = new PlayerGameData(
+        PlayerGameData.Instance.SaveSetting(
             _musicSliderMenu.value,
             _musicSliderLevel.value,
             _sfxSlider.value
         );
-        SaveManager.Save(PlayerGameData.Instance);
     }
 
 

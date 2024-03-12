@@ -30,8 +30,7 @@ public class BuyMaps : MonoBehaviour
             {
                 Debug.LogError("Không đủ animator để mở khóa level 3.");
             }
-
-            SaveManager.Save(PlayerGameData.Instance); // Lưu trữ dữ liệu gameData         
+            //PlayerGameData.Instance.AddNewMap(); // Lưu trữ dữ liệu gameData         
         }
         else
         {

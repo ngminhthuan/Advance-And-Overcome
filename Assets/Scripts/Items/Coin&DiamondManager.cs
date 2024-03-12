@@ -68,8 +68,7 @@ public class CoinDiamondManager : MonoBehaviour
             }
         }
 
-        PlayerGameData.Instance.totalDiamond += diamondValue; // Cập nhật tổng số kim cương trong gameData
-        SaveManager.Save(PlayerGameData.Instance); // Lưu trữ dữ liệu gameData
+        PlayerGameData.Instance.AddDimond(diamondValue); // Cập nhật tổng số kim cương trong gameData
     }
 
 
@@ -103,7 +102,7 @@ public class CoinDiamondManager : MonoBehaviour
             foreach (Text text in Diamondtext) // Cập nhật mỗi phần tử trong mảng Diamondtext
             {
                 text.text = ": " + PlayerGameData.Instance.totalDiamond.ToString();
-                SaveManager.Save(PlayerGameData.Instance);
+                //SaveManager.Save(PlayerGameData.Instance);
             }
         }
        
