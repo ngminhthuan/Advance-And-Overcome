@@ -231,6 +231,7 @@ public class AudioManager : MonoBehaviour
     public void musicVolumeMenu(float volume)
     {
         musicSources.volume = volume;
+
     }
 
     public void musicVolumeLevel(float volume1)

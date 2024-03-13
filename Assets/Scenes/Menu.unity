@@ -3624,7 +3624,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: MuteLevelMusic
+        m_MethodName: UnmuteLevelMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3636,7 +3636,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: MuteMenuMusic
+        m_MethodName: UnmuteMenuMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3648,7 +3648,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: MuteSFX
+        m_MethodName: UnmuteSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5123,7 +5123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: UnmuteLevelMusic
+        m_MethodName: MuteSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5135,7 +5135,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: UnmuteMenuMusic
+        m_MethodName: MuteLevelMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5147,7 +5147,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 589314103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: UnmuteSFX
+        m_MethodName: MuteMenuMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
