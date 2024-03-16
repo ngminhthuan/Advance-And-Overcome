@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.UI;
+
 using UnityEngine.UI;
 
 public class Socials : MonoBehaviour
@@ -33,21 +33,21 @@ public class Socials : MonoBehaviour
     public void OpenProfileFacebook()
     {
         // Mở trình duyệt mặc định của người dùng và điều hướng đến trang 
-       if(isThuan) Application.OpenURL(DucfacebookProfileURL);
+       if(!isThuan) Application.OpenURL(DucfacebookProfileURL);
        else Application.OpenURL(thuanProfileFace);
     }
 
     public void OpenProfileTikTok()
     {
         // Mở trình duyệt mặc định của người dùng và điều hướng đến trang 
-        if (isThuan) Application.OpenURL(DuctiktokProfileURL);
+        if (!isThuan) Application.OpenURL(DuctiktokProfileURL);
         else Application.OpenURL(thuanProfileTiktok);
     }
 
     public void OpenProfileYoutube()
     {
         // Mở trình duyệt mặc định của người dùng và điều hướng đến trang 
-        if (isThuan) Application.OpenURL(DucyoutubeProfileURL);
+        if (!isThuan) Application.OpenURL(DucyoutubeProfileURL);
         else Application.OpenURL(thuanProfileYtb);
     }
 
@@ -57,6 +57,12 @@ public class Socials : MonoBehaviour
         isThuan = true;
         SetActivePreviousNextBtn(true);
     }
+    public void OnPreviousClick()
+    {
+        creatorName.text = "Duc Contract";
+        isThuan = false;
+        SetActivePreviousNextBtn(false);
+    }
 
     public void SetActivePreviousNextBtn(bool isnext)
     {
@@ -65,3 +71,5 @@ public class Socials : MonoBehaviour
 
     }
 }
+
+

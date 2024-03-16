@@ -4,33 +4,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveManager
 {
-    public static void Save(PlayerGameData data)
+    public static void Save()
     {
-        string path = Application.persistentDataPath + ".data.qnd";
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream fs = new FileStream(path, FileMode.Create);
-        formatter.Serialize(fs, data);
-        fs.Close();
+        PlayerGameData.Instance.SaveGameData();
     }
 
     public static PlayerGameData Load()
     {
-        string path = GetPath();
-
-        if (!File.Exists(path))
-        {
-            Debug.Log("No save data found. Creating new data.");
-            PlayerGameData.Instance = new PlayerGameData();
-            Save(PlayerGameData.Instance);
-            return PlayerGameData.Instance;
-        }
-
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream fs = new FileStream(path, FileMode.Open);
-        PlayerGameData data = formatter.Deserialize(fs) as PlayerGameData;
-        fs.Close();
-
-        return data;
+        return PlayerGameData.Instance.LoadGameData();
     }
 
 

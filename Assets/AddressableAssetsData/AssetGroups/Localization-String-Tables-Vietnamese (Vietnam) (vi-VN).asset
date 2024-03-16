@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: c24ef2cbf7716c24e8df16ad0bfe0e9b
   m_SerializeEntries:
   - m_GUID: a2cf73801e8c49746830c42b459f54fa
-    m_Address: Menu_vi-VN
+    m_Address: Menu Function_vi-VN
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi-VN
@@ -30,6 +30,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-vi-VN
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f08eea78be6344c44b1565a7edb19bd1
+    m_Address: Menu Button_vi-VN
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-vi-VN
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 80382f190b8cf4c4b9560020a95788e0, type: 2}

@@ -20,77 +20,77 @@ public class MenuManager : MonoBehaviour
 
     public Slider _musicSliderMenu, _musicSliderLevel, _sfxSlider;
 
+
+    //private void Start()
+    //{
+    //    LoadAudioSettings();
+    //}
+
     
 
-    private void Start()
-    {
-        LoadAudioSettings();
-    }
-
-    
-
-    private void LoadAudioSettings()
-    {
+    //private void LoadAudioSettings()
+    //{
        
-        if (PlayerGameData.Instance != null)
-        {
-            _musicSliderMenu.value = PlayerGameData.Instance.musicVolumeMenu;
-            _musicSliderLevel.value = PlayerGameData.Instance.musicVolumeLevel;
-            _sfxSlider.value = PlayerGameData.Instance.sfxVolume;
+    //    if (PlayerGameData.Instance != null)
+    //    {
+    //        _musicSliderMenu.value = PlayerGameData.Instance.musicVolumeMenu;
+    //        _musicSliderLevel.value = PlayerGameData.Instance.musicVolumeLevel;
+    //        _sfxSlider.value = PlayerGameData.Instance.sfxVolume;
            
-        }
-        else
-        {
-            PlayerGameData.Instance = SaveManager.Load();
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        PlayerGameData.Instance = SaveManager.Load();
+    //    }
+    //}
 
 
-    private void SaveAudioSettings()
-    {
-        PlayerGameData.Instance = new PlayerGameData(
-            _musicSliderMenu.value,
-            _musicSliderLevel.value,
-            _sfxSlider.value
-        );
-        SaveManager.Save(PlayerGameData.Instance);
-    }
+
+
+    //private void SaveAudioSettings()
+    //{
+    //    PlayerGameData.Instance.SaveSetting(
+    //        _musicSliderMenu.value,
+    //        _musicSliderLevel.value,
+    //        _sfxSlider.value
+    //    );
+    //}
 
 
     public void MuteMenuMusic()
     {
         AudioManager.Instance.MuteMenuMusic();
-        SaveAudioSettings();
+       // SaveAudioSettings();
     }
 
     public void UnmuteMenuMusic()
     {
         AudioManager.Instance.UnmuteMenuMusic();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void MuteLevelMusic()
     {
         AudioManager.Instance.MuteLevelMusic();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void UnmuteLevelMusic()
     {
         AudioManager.Instance.UnmuteLevelMusic();
-        SaveAudioSettings();
+       // SaveAudioSettings();
     }
 
     public void MuteSFX()
     {
         AudioManager.Instance.MuteSFX();
-        SaveAudioSettings();
+       // SaveAudioSettings();
     }
 
     public void UnmuteSFX()
     {
         AudioManager.Instance.UnmuteSFX();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     // Các hàm kiểm tra trạng thái âm thanh
@@ -114,7 +114,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.musicVolumeMenu(_musicSliderMenu.value);
-            SaveAudioSettings();
+           // SaveAudioSettings();
         }
         else
         {
@@ -127,7 +127,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.musicVolumeLevel(_musicSliderLevel.value);
-            SaveAudioSettings();
+           // SaveAudioSettings();
         }
     }
 
@@ -136,7 +136,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.sfxVolume(_sfxSlider.value);
-            SaveAudioSettings();
+           // SaveAudioSettings();
         }
     }
 }
