@@ -74,7 +74,7 @@ public class CoinDiamondManager : MonoBehaviour
 
     public bool HasEnoughDiamondsForPurchase(int diamondCost)
     {
-        return PlayerGameData.Instance.totalDiamond >= diamondCost;
+        return PlayerGameData.Instance.PlayerData.totalDiamond >= diamondCost;
     }
 
     public void ResetScores()
@@ -101,7 +101,7 @@ public class CoinDiamondManager : MonoBehaviour
         {
             foreach (Text text in Diamondtext) // Cập nhật mỗi phần tử trong mảng Diamondtext
             {
-                text.text = ": " + PlayerGameData.Instance.totalDiamond.ToString();
+                text.text = ": " + PlayerGameData.Instance.PlayerData.totalDiamond.ToString();
                 //SaveManager.Save(PlayerGameData.Instance);
             }
         }

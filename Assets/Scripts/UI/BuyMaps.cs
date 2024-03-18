@@ -16,7 +16,7 @@ public class BuyMaps : MonoBehaviour
     {
         if (coinDiamondManager != null && coinDiamondManager.HasEnoughDiamondsForPurchase(diamondCost))
         {
-            coinDiamondManager.changeScoreDiamond(PlayerGameData.Instance.totalDiamond - diamondCost);
+            coinDiamondManager.changeScoreDiamond(PlayerGameData.Instance.PlayerData.totalDiamond - diamondCost);
 
             buttons[2].interactable = true;
 

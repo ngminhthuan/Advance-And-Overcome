@@ -1,150 +1,108 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
+[Serializable]
 public class PlayerGameData : MonoBehaviour
 {
     private static PlayerGameData _instance;
 
+    // Public property to access the singleton instance
     public static PlayerGameData Instance
     {
         get { return _instance; }
         set { _instance = value; }
     }
-
-    public int totalDiamond;
-    public float musicVolumeMenu;
-    public float musicVolumeLevel;
-    public float sfxVolume;
-    public int currentCharacter;
-    public int mapcurrentUnlock;
-    public List<int> listCharacterID = new List<int>();
-    public List<int> ListMap = new List<int>();
+    PlayerData playerData = new PlayerData();
+    public PlayerData PlayerData
+    {
+        get { return playerData; }
+        set { playerData = value; }
+    }
 
     private void Awake()
     {
         if (_instance == null)
         {
-            _instance = this;
+            _instance = this; // Assign the singleton instance to this
+            DontDestroyOnLoad(gameObject); // Optional if you want the object to persist between scenes
+            SaveManager.Load();
         }
-        else if (_instance != this)
+    }
+
+    public PlayerData newPlayerData()
+    {
+        PlayerData newplayer = new PlayerData
         {
-            Destroy(gameObject);
-        }
+            totalDiamond = 0,
+            musicVolumeMenu = 1f,
+            musicVolumeLevel = 1f,
+            sfxVolume = 1f,
+            currentCharacter = DefaultData.characterid,
+            mapcurrentUnlock = DefaultData.Map,
+            listCharacterID = new List<int>(),
+            ListMap = new List<int>(),
+        };
+        playerData = newplayer;
 
-        LoadGameData();
+        return newplayer;
+
     }
-
-    private void OnApplicationQuit()
+    public PlayerGameData(float musicMenu, float musicLevel, float sfx, List<int> characterList = null, List<int> MapList = null)
     {
-        //SaveGameData();
-    }
-
-    public PlayerGameData LoadGameData()
-    {
-        if (File.Exists(Application.persistentDataPath + "/playerData.dat"))
+        playerData.musicVolumeMenu = musicMenu;
+        playerData.musicVolumeLevel = musicLevel;
+        playerData.sfxVolume = sfx;
+        if (characterList != null)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
-            PlayerGameData data = (PlayerGameData)bf.Deserialize(file);
-            file.Close();
-
-            totalDiamond = data.totalDiamond;
-            musicVolumeMenu = data.musicVolumeMenu;
-            musicVolumeLevel = data.musicVolumeLevel;
-            sfxVolume = data.sfxVolume;
-            currentCharacter = data.currentCharacter;
-            mapcurrentUnlock = data.mapcurrentUnlock;
-            listCharacterID = data.listCharacterID;
-            ListMap = data.ListMap;
+            playerData.listCharacterID = characterList;
         }
-        else
+
+        if (MapList != null)
         {
-            InitializeDefaultData();
+            playerData.ListMap = MapList;
         }
-        return this;
     }
 
-    public PlayerGameData() {
-    }
-    public void SaveSetting(float musicMenu, float musicLevel, float sfx)
-    {
-        musicVolumeMenu = musicMenu;
-        musicVolumeLevel = musicLevel;
-        sfxVolume = sfx;
-        SaveGameData();
-    }
-
-    public void SaveGameData()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/playerData.dat");
-        PlayerGameData data = new PlayerGameData();
-
-        data.totalDiamond = totalDiamond;
-        data.musicVolumeMenu = musicVolumeMenu;
-        data.musicVolumeLevel = musicVolumeLevel;
-        data.sfxVolume = sfxVolume;
-        data.currentCharacter = currentCharacter;
-        data.mapcurrentUnlock = mapcurrentUnlock;
-        data.listCharacterID = listCharacterID;
-        data.ListMap = ListMap;
-
-        bf.Serialize(file, data);
-        file.Close();
-    }
-
-    private void InitializeDefaultData()
-    {
-        totalDiamond = DefaultData.Diamond;
-        musicVolumeMenu = DefaultData.musicVolumeMenu;
-        musicVolumeLevel = DefaultData.musicVolumeLevel;
-        sfxVolume = DefaultData.sfxVolume;
-        currentCharacter = DefaultData.characterid;
-        mapcurrentUnlock = DefaultData.Map;
-        listCharacterID = new List<int>();
-        ListMap = new List<int>();
-    }
-
-    // Your other methods...
     public void AddNewMap(int mapID)
     {
-        if (!ListMap.Contains(mapID))
+        if (!playerData.ListMap.Contains(mapID))
         {
-            ListMap.Add(mapID);
+            playerData.ListMap.Add(mapID);
         }
-        SaveGameData();
+        SaveManager.Save(playerData);
     }
 
     public void AddNewCharacter(int characterID)
     {
-        if (!listCharacterID.Contains(characterID))
+        if (!playerData.listCharacterID.Contains(characterID))
         {
-            listCharacterID.Add(characterID);
+            playerData.listCharacterID.Add(characterID);
         }
-        SaveGameData();
+        SaveManager.Save(playerData);
     }
 
     public void AddDimond(int valueAdd)
     {
-        this.totalDiamond += valueAdd;
-        SaveGameData();
+        playerData.totalDiamond += valueAdd;
+        SaveManager.Save(playerData);
     }
 
     public void RemoveDimond(int valueRemove)
     {
-        this.totalDiamond -= valueRemove;
-        SaveGameData();
+        playerData.totalDiamond -= valueRemove;
+        SaveManager.Save(playerData);
     }
     public void ResetAllData()
     {
         SaveManager.DeleteSaveData(); // Xóa dữ liệu 
     }
+
     public void UseNewCharacter(int characterId)
     {
-        currentCharacter = characterId;
-        SaveGameData();
+        playerData.currentCharacter = characterId;
+        SaveManager.Save(playerData);
     }
 }
 
@@ -156,4 +114,18 @@ public class DefaultData
     public const float musicVolumeLevel = 1f;
     public const float sfxVolume = 1f;
     public const int Map = 1;
+}
+
+[Serializable]
+public class PlayerData
+{
+    // Your player data fields here...
+    public int totalDiamond;
+    public float musicVolumeMenu;
+    public float musicVolumeLevel;
+    public float sfxVolume;
+    public int currentCharacter;
+    public int mapcurrentUnlock;
+    public List<int> listCharacterID = new List<int>();
+    public List<int> ListMap = new List<int>();
 }

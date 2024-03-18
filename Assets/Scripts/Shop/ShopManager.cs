@@ -68,13 +68,13 @@ public class ShopManager : MonoBehaviour
         characterSprite.sprite = characterShop.characterSprite;
         characterName.text = characterShop.characterName;
 
-        if (PlayerGameData.Instance.currentCharacter == currentIDCharShop)
+        if (PlayerGameData.Instance.PlayerData.currentCharacter == currentIDCharShop)
         {
             SetActiveBtnCharacterCustom(true, true);
         }
         else
         {
-            if(PlayerGameData.Instance.listCharacterID.Contains(currentIDCharShop))
+            if(PlayerGameData.Instance.PlayerData.listCharacterID.Contains(currentIDCharShop))
             {
                 SetActiveBtnCharacterCustom(false, true);
             }
