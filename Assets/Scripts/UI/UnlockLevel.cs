@@ -10,7 +10,7 @@ public class UnlockLevel : MonoBehaviour
     {
         // Xóa dữ liệu lưu trữ PlayerPrefs khi cần thiết
         // Gọi hàm này từ nơi nào đó trong code của bạn khi bạn muốn xóa dữ liệu
-        //ClearPlayerPrefs();
+        ClearPlayerPrefs();
 
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
