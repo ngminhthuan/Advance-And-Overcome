@@ -4112,9 +4112,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ShopsManager, Assembly-CSharp
-        m_MethodName: NextOptionCharacter
+      - m_Target: {fileID: 6512787555488684622}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: NextCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6142,9 +6142,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ShopsManager, Assembly-CSharp
-        m_MethodName: BackOptionCharacter
+      - m_Target: {fileID: 6512787555488684622}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: PreviosCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

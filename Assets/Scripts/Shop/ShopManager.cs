@@ -14,6 +14,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Image characterSprite;
     [SerializeField] Text characterName;
     [SerializeField] int currentIDCharShop;
+    [SerializeField] Text chacracterUserDiamondShop;
 
     [SerializeField] GameObject PreviosBtn;
     [SerializeField] GameObject NextBtn;
@@ -31,6 +32,7 @@ public class ShopManager : MonoBehaviour
     {
         currentIDCharShop = 0;
         SetCharacterInfoShop();
+        PreviosBtn.SetActive(false);
     }
 
     public void PreviosCharacter()
@@ -40,20 +42,35 @@ public class ShopManager : MonoBehaviour
         {
             PreviosBtn.SetActive(false);
         }
+        else
+        {
+            PreviosBtn.SetActive(true);
+        }
+        NextBtn.SetActive(true);
         SetCharacterInfoShop();
     }
-    public void OnPurchaseCharacter()
-    {
-        
-    }
+
+    // 
+    //public void OnPurchaseCharacter(int mount)
+    //{
+    //    PlayerGameData.Instance.AddDimond(amount);
+    //    chacracterUserDiamondShop.text = PlayerGameData.Instance.PlayerData.totalDiamond.ToString();
+    //}
+
     public void NextCharacter()
     {
         currentIDCharShop += 1;
-        if (currentIDCharShop >= characterDataBase.CharactersCount)
+        if (currentIDCharShop <= characterDataBase.CharactersCount)
+        {
+            NextBtn.SetActive(true);
+            SetCharacterInfoShop();
+        }
+        else
         {
             NextBtn.SetActive(false);
         }
-        SetCharacterInfoShop();
+        PreviosBtn.SetActive(true);
+        
     }
 
     public void SelectedNewCharacter()
@@ -67,6 +84,11 @@ public class ShopManager : MonoBehaviour
         Character characterShop = characterDataBase.GetCharacterByID(currentIDCharShop);
         characterSprite.sprite = characterShop.characterSprite;
         characterName.text = characterShop.characterName;
+        
+        if(PlayerGameData.Instance.PlayerData == null)
+        {
+            PlayerGameData.Instance.PlayerData = SaveManager.Load();
+        }
 
         if (PlayerGameData.Instance.PlayerData.currentCharacter == currentIDCharShop)
         {
@@ -111,6 +133,7 @@ public class ShopManager : MonoBehaviour
     {
         initCharacter();
         CharacterShop.SetActive(true);
+        DiamondUserCharShop.text = PlayerGameData.Instance.PlayerData.totalDiamond.ToString();
     }
     #endregion
 
@@ -118,16 +141,23 @@ public class ShopManager : MonoBehaviour
     public void OnPurchaseDiamond(int amount)
     {
         PlayerGameData.Instance.AddDimond(amount);
+        DiamondUserDiamondShop.text = PlayerGameData.Instance.PlayerData.totalDiamond.ToString();
     }
 
     public void OnClickHideDiamondShop()
     {
         DiamondShop.SetActive(false);
+
         
     }
     public void OnClickShowDiamondShop()
     {
         DiamondShop.SetActive(true);
+        if (PlayerGameData.Instance.PlayerData == null)
+        {
+            PlayerGameData.Instance.PlayerData = SaveManager.Load();
+        }
+        DiamondUserDiamondShop.text = PlayerGameData.Instance.PlayerData.totalDiamond.ToString();
     }
     
     #endregion

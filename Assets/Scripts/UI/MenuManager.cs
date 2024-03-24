@@ -4,20 +4,8 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public void openLevel(int level)
-    {
-        AudioManager.Instance.PlaySFX("ChooseLevel");
-        string levelName = "Level " + level;
-        SceneManager.LoadScene(levelName);
-    }
-
-    public void quitGame()
-    {
-        Application.Quit();
-        Debug.Log("Quit!");
-    }
-
-
+    
+   
     public Slider _musicSliderMenu, _musicSliderLevel, _sfxSlider;
 
 
@@ -26,17 +14,17 @@ public class MenuManager : MonoBehaviour
     //    LoadAudioSettings();
     //}
 
-    
+
 
     //private void LoadAudioSettings()
     //{
-       
+
     //    if (PlayerGameData.Instance != null)
     //    {
     //        _musicSliderMenu.value = PlayerGameData.Instance.musicVolumeMenu;
     //        _musicSliderLevel.value = PlayerGameData.Instance.musicVolumeLevel;
     //        _sfxSlider.value = PlayerGameData.Instance.sfxVolume;
-           
+
     //    }
     //    else
     //    {
@@ -60,7 +48,7 @@ public class MenuManager : MonoBehaviour
     public void MuteMenuMusic()
     {
         AudioManager.Instance.MuteMenuMusic();
-       // SaveAudioSettings();
+        // SaveAudioSettings();
     }
 
     public void UnmuteMenuMusic()
@@ -78,13 +66,13 @@ public class MenuManager : MonoBehaviour
     public void UnmuteLevelMusic()
     {
         AudioManager.Instance.UnmuteLevelMusic();
-       // SaveAudioSettings();
+        // SaveAudioSettings();
     }
 
     public void MuteSFX()
     {
         AudioManager.Instance.MuteSFX();
-       // SaveAudioSettings();
+        // SaveAudioSettings();
     }
 
     public void UnmuteSFX()
@@ -114,7 +102,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.musicVolumeMenu(_musicSliderMenu.value);
-           // SaveAudioSettings();
+            // SaveAudioSettings();
         }
         else
         {
@@ -127,7 +115,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.musicVolumeLevel(_musicSliderLevel.value);
-           // SaveAudioSettings();
+            // SaveAudioSettings();
         }
     }
 
@@ -136,7 +124,7 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.sfxVolume(_sfxSlider.value);
-           // SaveAudioSettings();
+            // SaveAudioSettings();
         }
     }
 }

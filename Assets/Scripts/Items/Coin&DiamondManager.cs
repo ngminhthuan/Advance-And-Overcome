@@ -15,18 +15,12 @@ public class CoinDiamondManager : MonoBehaviour
     private int diamondScore = 0;
 
     private bool boxFinalDestroyed;
-    private int[] coinsDestroyBoxFinal = { 5, 8, 14, 18, 25, 38, 50 }; // Mảng số lượng coin cần ở mỗi cấp độ
+    private int[] coinsDestroyBoxFinal = { 5, 19, 29, 39, 55, 100 }; // Mảng số lượng coin cần ở mỗi cấp độ
 
-    private void Awake()
-    {
-        
-     
-        //SaveManager.DeleteSaveData(); // Xóa dữ liệu 
-    }
 
     void Start()
     {
-        UpdateUIDiamondText();
+        //UpdateUIDiamondText();
         if (instance == null)
         {
             instance = this;

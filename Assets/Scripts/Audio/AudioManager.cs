@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class AudioManager : MonoBehaviour
     public GameObject OnMusicLevelButton;
     public GameObject MuteMusicLevelButton;
 
+    // Khai báo các biến để lưu trữ cài đặt âm thanh của người chơi
+    private const string MusicVolumeMenuKey = "MusicVolumeMenu";
+    private const string MusicVolumeLevelKey = "MusicVolumeLevel";
+    private const string SfxVolumeKey = "SfxVolume";
+
+    public Slider _musicSliderMenu, _musicSliderLevel, _sfxSlider;
+
     //Khai báo GameObject dùng để lưu chức năng chọn nhanh âm thanh
 
     public GameObject Silent;
@@ -57,6 +65,8 @@ public class AudioManager : MonoBehaviour
     {
         // Load cài đặt âm thanh khi khởi động
         LoadAudioSettings();
+
+        UpdateSlider();
 
         // Cập nhật trạng thái các gameobject dựa trên cài đặt âm thanh đã lưu
         UpdateAdjustSound();
@@ -85,6 +95,27 @@ public class AudioManager : MonoBehaviour
     {
         Silent.SetActive(!IsSfxMuted() || !IsMenuMusicMuted() || !IsLevelMusicMuted()); // Nút chọn im lặng thì 3 hàm này phải im lặng
         OnSound.SetActive(IsSfxMuted() || IsMenuMusicMuted() || IsLevelMusicMuted());
+    }
+
+    private void UpdateSlider()
+    {
+        // Cập nhật giá trị âm lượng cho Slider của SFX
+        if (_sfxSlider != null)
+        {
+            _sfxSlider.value = sfxSources.volume;
+        }
+
+        // Cập nhật giá trị âm lượng cho Slider của Music Menu
+        if (_musicSliderMenu != null)
+        {
+            _musicSliderMenu.value = musicSources.volume;
+        }
+
+        // Cập nhật giá trị âm lượng cho Slider của Music Level
+        if (_musicSliderLevel != null)
+        {
+            _musicSliderLevel.value = musicSources1.volume;
+        }
     }
 
     private void PlayMusicForScene(string sceneName)
@@ -152,9 +183,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
     private void LoadAudioSettings()
     {
+        musicSources.volume = PlayerPrefs.GetFloat(MusicVolumeMenuKey, 1f);
+        musicSources1.volume = PlayerPrefs.GetFloat(MusicVolumeLevelKey, 1f);
+        sfxSources.volume = PlayerPrefs.GetFloat(SfxVolumeKey, 1f);
+
         menuMusicMuted = PlayerPrefs.GetInt(MenuMusicMutedKey, 0) == 1;
         levelMusicMuted = PlayerPrefs.GetInt(LevelMusicMutedKey, 0) == 1;
         sfxMuted = PlayerPrefs.GetInt(SfxMutedKey, 0) == 1;
@@ -163,17 +197,22 @@ public class AudioManager : MonoBehaviour
         musicSources.mute = menuMusicMuted;
         musicSources1.mute = levelMusicMuted;
         sfxSources.mute = sfxMuted;
-    }
 
+    }
     private void SaveAudioSettings()
     {
-        PlayerPrefs.SetInt(MenuMusicMutedKey, menuMusicMuted ? 1 : 0);
-        PlayerPrefs.SetInt(LevelMusicMutedKey, levelMusicMuted ? 1 : 0);
-        PlayerPrefs.SetInt(SfxMutedKey, sfxMuted ? 1 : 0);
-        PlayerPrefs.Save();
-    }
+            PlayerPrefs.SetFloat(MusicVolumeMenuKey, musicSources.volume);
+            PlayerPrefs.SetFloat(MusicVolumeLevelKey, musicSources1.volume);
+            PlayerPrefs.SetFloat(SfxVolumeKey, sfxSources.volume);
 
-    public void MuteMenuMusic()
+            PlayerPrefs.SetInt(MenuMusicMutedKey, menuMusicMuted ? 1 : 0);
+            PlayerPrefs.SetInt(LevelMusicMutedKey, levelMusicMuted ? 1 : 0);
+            PlayerPrefs.SetInt(SfxMutedKey, sfxMuted ? 1 : 0);
+
+            PlayerPrefs.Save();
+        
+    }
+        public void MuteMenuMusic()
     {
         menuMusicMuted = !menuMusicMuted;
         musicSources.mute = menuMusicMuted;
@@ -231,17 +270,22 @@ public class AudioManager : MonoBehaviour
     public void musicVolumeMenu(float volume)
     {
         musicSources.volume = volume;
-
+        SaveAudioSettings();
+        UpdateSlider();
     }
 
-    public void musicVolumeLevel(float volume1)
+    public void musicVolumeLevel(float volume)
     {
-        musicSources1.volume = volume1;
+        musicSources1.volume = volume;
+        SaveAudioSettings();
+        UpdateSlider();
     }
 
     public void sfxVolume(float volume)
     {
         sfxSources.volume = volume;
+        SaveAudioSettings();
+        UpdateSlider();
     }
 
     public bool IsSfxMuted()
