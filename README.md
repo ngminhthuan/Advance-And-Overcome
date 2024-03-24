@@ -1,2 +1,2 @@
-# A-A-O-
-Platform 2D
+# A-O
+Game 2D Mobile
