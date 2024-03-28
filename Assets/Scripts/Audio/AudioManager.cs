@@ -93,8 +93,8 @@ public class AudioManager : MonoBehaviour
 
     private void UpdateChoiceSound()
     {
-        Silent.SetActive(!IsSfxMuted() && !IsMenuMusicMuted() && !IsLevelMusicMuted()); // Nút chọn im lặng thì 3 hàm này phải im lặng
-        OnSound.SetActive(IsSfxMuted() && IsMenuMusicMuted() && IsLevelMusicMuted());
+        Silent.SetActive(IsSfxMuted() && IsMenuMusicMuted() && IsLevelMusicMuted()); // Nút chọn im lặng thì 3 hàm này phải im lặng
+        OnSound.SetActive(!IsSfxMuted() && !IsMenuMusicMuted() && !IsLevelMusicMuted());
     }
 
     private void UpdateSlider()
@@ -103,10 +103,6 @@ public class AudioManager : MonoBehaviour
         if (_sfxSlider != null)
         {
             _sfxSlider.value = sfxSources.volume;
-            if(_sfxSlider.value == 0)
-            {
-                MuteSfxButton.SetActive(IsSfxMuted());
-            }
         } //Làm tiếp logic âm thanh
 
         // Cập nhật giá trị âm lượng cho Slider của Music Menu
