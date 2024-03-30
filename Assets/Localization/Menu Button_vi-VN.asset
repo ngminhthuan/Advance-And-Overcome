@@ -90,6 +90,10 @@ MonoBehaviour:
     m_Localized: "H\xC3Y TI\u1EBEP T\u1EE4C CHI\u1EBEN \u0110\u1EA4U!"
     m_Metadata:
       m_Items: []
+  - m_Id: 5554548378177536
+    m_Localized: "L\u01AFU"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

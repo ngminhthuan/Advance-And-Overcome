@@ -61,6 +61,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void SaveButton()
+    {
+        SaveAudioSettings();
+    }
+
     private void Start()
     {
         // Load cài đặt âm thanh khi khởi động
@@ -221,16 +226,17 @@ public class AudioManager : MonoBehaviour
         musicSources.mute = menuMusicMuted;
         
         UpdateAdjustSound(); // Cập nhật trạng thái các gameobject sau khi thay đổi trạng thái mute
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
+   
     public void MuteLevelMusic()
     {
         levelMusicMuted = !levelMusicMuted;
         musicSources1.mute = levelMusicMuted;
         
         UpdateAdjustSound(); // Cập nhật trạng thái các gameobject sau khi thay đổi trạng thái mute
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void MuteSFX()
@@ -239,7 +245,7 @@ public class AudioManager : MonoBehaviour
         sfxSources.mute = sfxMuted;
         
         UpdateAdjustSound(); // Cập nhật trạng thái các gameobject sau khi thay đổi trạng thái mute
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
 
@@ -249,7 +255,7 @@ public class AudioManager : MonoBehaviour
         musicSources.mute = false;
         
         UpdateAdjustSound();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void UnmuteLevelMusic()
@@ -258,7 +264,7 @@ public class AudioManager : MonoBehaviour
         musicSources1.mute = false;
         
         UpdateAdjustSound();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void UnmuteSFX()
@@ -267,29 +273,31 @@ public class AudioManager : MonoBehaviour
         sfxSources.mute = false;
         
         UpdateAdjustSound();
-        SaveAudioSettings();
+        //SaveAudioSettings();
     }
 
     public void musicVolumeMenu(float volume)
     {
         musicSources.volume = volume;
-        SaveAudioSettings();
+        //SaveAudioSettings();
         UpdateSlider();
     }
 
     public void musicVolumeLevel(float volume)
     {
         musicSources1.volume = volume;
-        SaveAudioSettings();
+        //SaveAudioSettings();
         UpdateSlider();
     }
 
     public void sfxVolume(float volume)
     {
         sfxSources.volume = volume;
-        SaveAudioSettings();
+        //SaveAudioSettings();
         UpdateSlider();
     }
+
+   
 
     public bool IsSfxMuted()
     {

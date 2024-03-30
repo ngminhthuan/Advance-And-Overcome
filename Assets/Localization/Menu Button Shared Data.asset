@@ -87,6 +87,10 @@ MonoBehaviour:
     m_Key: KEEP FIGHTING
     m_Metadata:
       m_Items: []
+  - m_Id: 5554548378177536
+    m_Key: SAVE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
