@@ -11,7 +11,7 @@ public class CoinDiamondManager : MonoBehaviour
 
     [SerializeField] public GameObject BoxFinal;
 
-    GameManagerLevel gameManagerLevel;
+   
     private int coinScore;
     private int diamondScore = 0;
 

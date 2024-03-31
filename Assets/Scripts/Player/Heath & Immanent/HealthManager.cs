@@ -28,7 +28,7 @@ public class HealthManager : MonoBehaviour
     public void OnPlayerGameOverAnimationEvent()
     {
         // Gọi hàm gameOver trong MenuManager
-        FindObjectOfType<GameManagerLevel>()?.gameOver();
+        FindObjectOfType<GameLevelManager>()?.gameOver();
         
     }
 
